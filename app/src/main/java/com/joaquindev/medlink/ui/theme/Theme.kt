@@ -21,6 +21,7 @@ private val LightColorScheme = lightColorScheme(
     primary = primaryColor,
     onPrimary = onPrimaryColor,
     secondary = secondaryColor,
+    onSecondary = onSecondaryColor,
     tertiary = tertiaryColor,
     onTertiary = onTertiaryColor
 

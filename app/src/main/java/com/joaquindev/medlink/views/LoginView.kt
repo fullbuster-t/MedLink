@@ -22,8 +22,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.joaquindev.medlink.components.CustomBlockTextFiled
 import com.joaquindev.medlink.components.CustomTextButton
 import com.joaquindev.medlink.components.SectionParagraph
 import com.joaquindev.medlink.components.SectionTitle
@@ -72,47 +75,27 @@ fun  LoginViewContent(navController: NavController) {
         )
         SectionParagraph("La mejor manera de gestionar tu salud y bienestar la encuentras aquí")
         SpaceH(30.dp)
-        SectionTitle(
+
+        CustomBlockTextFiled(
             title = "Correo electrónico",
             color = Color.Black,
-        )
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
             value = email,
             onValueChange = { email = it },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-            colors = TextFieldDefaults.colors(
-                focusedTextColor = MaterialTheme.colorScheme.onTertiary,
-                unfocusedTextColor = MaterialTheme.colorScheme.onTertiary,
-                cursorColor = MaterialTheme.colorScheme.secondary,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedContainerColor = MaterialTheme.colorScheme.tertiary,
-                unfocusedContainerColor = MaterialTheme.colorScheme.tertiary,
-            ),
-            shape = RoundedCornerShape(15.dp)
+            visualTransformation = VisualTransformation.None,
+            keyboardType = KeyboardType.Email
         )
+
         SpaceH()
-        SectionTitle(
+
+        CustomBlockTextFiled(
             title = "Contraseña",
-            color = Color.Black
-        )
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
+            color = Color.Black,
             value = password,
             onValueChange = { password = it },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            colors = TextFieldDefaults.colors(
-                focusedTextColor = MaterialTheme.colorScheme.onTertiary,
-                unfocusedTextColor = MaterialTheme.colorScheme.onTertiary,
-                cursorColor = MaterialTheme.colorScheme.secondary,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedContainerColor = MaterialTheme.colorScheme.tertiary,
-                unfocusedContainerColor = MaterialTheme.colorScheme.tertiary,
-            ),
-            shape = RoundedCornerShape(15.dp)
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardType = KeyboardType.Password
         )
+
         CustomTextButton(
             "Olvide mi contraseña",
             onClick = { navController.navigate("RecoverPassword") }

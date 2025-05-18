@@ -13,11 +13,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -35,13 +41,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.joaquindev.medlink.R
+import com.joaquindev.medlink.components.BottomNavAppBar
 import com.joaquindev.medlink.components.BoxIconButton
+import com.joaquindev.medlink.components.CustomIconButton
 import com.joaquindev.medlink.components.HomeTopAppBar
 import com.joaquindev.medlink.components.SectionTitle
 import com.joaquindev.medlink.components.SessionAppBar
 import com.joaquindev.medlink.components.SpaceH
 import com.joaquindev.medlink.components.SpaceW
+import com.joaquindev.medlink.components.TreatmentCard
 import com.joaquindev.medlink.components.WeekRow
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -50,8 +58,21 @@ import com.joaquindev.medlink.components.WeekRow
 fun HomeView(navController: NavController) {
     Scaffold(
         topBar = {
-            HomeTopAppBar()
-        }
+            HomeTopAppBar(
+                onclickProfile = { navController.navigate("Settings") },
+                onclickNotifications = { /*navController.navigate("Notifications")*/ },
+                onclickSettings = { navController.navigate("Settings") },
+            )
+        },
+        bottomBar = {
+            BottomNavAppBar(
+                onClickHome = { navController.navigate("Home") },
+                onClickCalendar = { /*navController.navigate("Calendar")*/ },
+                onClickAdd = { navController.navigate("NewTreatment") },
+                onClickNotifications = { /*navController.navigate("Notifications")*/ },
+                onClickSettings = { navController.navigate("Settings") }
+            )
+        },
     ) { padding ->
         Column(
             modifier = Modifier
@@ -114,6 +135,24 @@ fun HomeViewContent(navController: NavController) {
                 )
                 SpaceH()
 
+            }
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.secondary)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(25.dp)
+            ) {
+                SectionTitle(
+                    title = "Tratamientos en curso",
+                    color = Color.Black,
+                )
+                SpaceH()
+                TreatmentCard()
             }
         }
     }

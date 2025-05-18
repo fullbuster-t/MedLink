@@ -23,10 +23,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.joaquindev.medlink.components.CustomBlockTextFiled
 import com.joaquindev.medlink.components.CustomTextButton
 import com.joaquindev.medlink.components.SectionParagraph
 import com.joaquindev.medlink.components.SectionTitle
@@ -76,67 +79,31 @@ fun RegisterViewContent(navController: NavController) {
         )
         SectionParagraph("Registrate para acceder a todas nuestras funcionalidades")
         SpaceH(30.dp)
-        SectionTitle(
+        CustomBlockTextFiled(
             title = "Nombre completo",
-            color = Color.Black
-        )
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
+            color = Color.Black,
             value = name,
             onValueChange = { name = it },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            colors = TextFieldDefaults.colors(
-                focusedTextColor = MaterialTheme.colorScheme.onTertiary,
-                unfocusedTextColor = MaterialTheme.colorScheme.onTertiary,
-                cursorColor = MaterialTheme.colorScheme.secondary,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedContainerColor = MaterialTheme.colorScheme.tertiary,
-                unfocusedContainerColor = MaterialTheme.colorScheme.tertiary,
-            ),
-            shape = RoundedCornerShape(15.dp)
+            visualTransformation = VisualTransformation.None,
+            keyboardType = KeyboardType.Text
         )
         SpaceH()
-        SectionTitle(
-            title = "Correo",
-            color = Color.Black
-        )
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
+        CustomBlockTextFiled(
+            title = "Correo electrónico",
+            color = Color.Black,
             value = email,
             onValueChange = { email = it },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            colors = TextFieldDefaults.colors(
-                focusedTextColor = MaterialTheme.colorScheme.onTertiary,
-                unfocusedTextColor = MaterialTheme.colorScheme.onTertiary,
-                cursorColor = MaterialTheme.colorScheme.secondary,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedContainerColor = MaterialTheme.colorScheme.tertiary,
-                unfocusedContainerColor = MaterialTheme.colorScheme.tertiary,
-            ),
-            shape = RoundedCornerShape(15.dp)
+            visualTransformation = VisualTransformation.None,
+            keyboardType = KeyboardType.Email
         )
         SpaceH()
-        SectionTitle(
+        CustomBlockTextFiled(
             title = "Contraseña",
-            color = Color.Black
-        )
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
+            color = Color.Black,
             value = password,
             onValueChange = { password = it },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            colors = TextFieldDefaults.colors(
-                focusedTextColor = MaterialTheme.colorScheme.onTertiary,
-                unfocusedTextColor = MaterialTheme.colorScheme.onTertiary,
-                cursorColor = MaterialTheme.colorScheme.secondary,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedContainerColor = MaterialTheme.colorScheme.tertiary,
-                unfocusedContainerColor = MaterialTheme.colorScheme.tertiary,
-            ),
-            shape = RoundedCornerShape(15.dp)
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardType = KeyboardType.Password
         )
         SpaceH(40.dp)
         Column(
